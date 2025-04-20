@@ -28,6 +28,12 @@ export default function PlantDetail() {
 
   const plant = usePlantStore((s) => s.plants.find((p) => p.id === plantId));
 
+  useEffect(() => {
+    if (params.action === "water") {
+      waterPlant(plantId);
+    }
+  }, [params.action, plantId, waterPlant]);
+
   const plantName = plant?.name || "Plant";
   useEffect(() => {
     navigation.setOptions({
@@ -36,14 +42,14 @@ export default function PlantDetail() {
   }, [plantName, navigation]);
 
   // know if we the page was redirect from deep link
-  useEffect(() => {
-    const getInitialUrl = async () => {
-      const url = await Linking.getInitialURL();
-      console.log({ deepLinkUrl: url });
-    };
+  // useEffect(() => {
+  //   const getInitialUrl = async () => {
+  //     const url = await Linking.getInitialURL();
+  //     console.log({ deepLinkUrl: url });
+  //   };
 
-    getInitialUrl();
-  }, []);
+  //   getInitialUrl();
+  // }, []);
 
   const handleWaterPlant = () => {
     if (typeof plantId === "string") {
@@ -91,7 +97,7 @@ export default function PlantDetail() {
       <View style={{ alignItems: "center" }}>
         <PlantlyImage imageUri={plant.imageUri} />
         <View style={styles.spacer} />
-        <Text style={styles.key}>Water me every</Text>
+        <Text style={styles.key}>Water me every </Text>
         <Text style={styles.value}>{plant.wateringFrequencyDays} days</Text>
         <Text style={styles.key}>Last watered at</Text>
         <Text style={styles.value}>
