@@ -3,7 +3,7 @@ import { useUserStore } from "@/store/user-store";
 import { theme } from "@/theme";
 import { LinearGradient } from "expo-linear-gradient";
 import { useRouter } from "expo-router";
-import { StyleSheet, Text, View } from "react-native";
+import { Platform, StyleSheet, Text, View } from "react-native";
 
 import { StatusBar } from "expo-status-bar";
 import { PlantlyImage } from "@/components/plantly-image";
@@ -52,8 +52,14 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   tagLine: {
-    fontSize: 18,
+    fontSize: 28,
     color: theme.colorWhite,
     textAlign: "center",
+    fontFamily: Platform.select({
+      // on ios you must use the "real" font name (you can use your font book to check that)
+      ios: "Caveat-Regular",
+      // on android the font family is the file name
+      android: "Caveat_400Regular",
+    }),
   },
 });
