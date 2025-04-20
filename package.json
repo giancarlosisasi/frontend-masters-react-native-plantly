@@ -6,6 +6,7 @@
     "start": "expo start",
     "android": "expo run:android",
     "ios": "expo run:ios",
+    "prebuild:androind": "expo prebuild --clean --platform android",
     "web": "expo start --web",
     "lint": "eslint ."
   },
@@ -23,6 +24,7 @@
     "expo-image-picker": "~16.0.6",
     "expo-linear-gradient": "~14.0.2",
     "expo-linking": "~7.0.5",
+    "expo-quick-actions": "^4.0.2",
     "expo-router": "~4.0.20",
     "expo-status-bar": "~2.0.1",
     "react": "18.3.1",
