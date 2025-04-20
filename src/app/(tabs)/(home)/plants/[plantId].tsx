@@ -5,7 +5,14 @@ import { theme } from "@/theme";
 import { differenceInCalendarDays, format } from "date-fns";
 import { useLocalSearchParams, useNavigation, useRouter } from "expo-router";
 import { useEffect } from "react";
-import { Text, View, StyleSheet, Alert, Pressable } from "react-native";
+import {
+  Text,
+  View,
+  StyleSheet,
+  Alert,
+  Pressable,
+  Linking,
+} from "react-native";
 
 const fullDateFormat = "LLL d yyyy, h:mm aaa";
 
@@ -27,6 +34,16 @@ export default function PlantDetail() {
       title: plantName,
     });
   }, [plantName, navigation]);
+
+  // know if we the page was redirect from deep link
+  useEffect(() => {
+    const getInitialUrl = async () => {
+      const url = await Linking.getInitialURL();
+      console.log({ deepLinkUrl: url });
+    };
+
+    getInitialUrl();
+  }, []);
 
   const handleWaterPlant = () => {
     if (typeof plantId === "string") {
