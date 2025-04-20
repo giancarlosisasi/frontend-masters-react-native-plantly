@@ -6,7 +6,6 @@ import { useUserStore } from "@/store/user-store";
 
 export default function RootLayout() {
   SplashScreen.hideAsync();
-
   const hasFinishedOnboarding = useUserStore(
     (state) => state.hasFinishedOnboarding,
   );
